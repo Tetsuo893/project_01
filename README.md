@@ -6,12 +6,12 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible file may be used to install only certain pieces of it, such as Filebeat.
 
-  - [Install ELK Ansible file](ansible/install_elk.yml)
-  - [Install Filebeat file](ansible/filebeat_playbook.yml)
-  - [Install Metricbeat file](ansible/metricbeat_playbook.yml)
+  - [Install ELK Ansible file](Ansible/install_elk.yml)
+  - [Install Filebeat file](Ansible/filebeat_playbook.yml)
+  - [Install Metricbeat file](Ansible/metricbeat_playbook.yml)
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -89,7 +89,9 @@ We have installed the following Beats on the above machines:
 	- metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat allows us to collect system logs so we can see what's happening on the operating system and the services installed on that server. If for example, there are many failed SSH attempts, Filebeat will capture these logs and send them to an application like Kibana so we can view what's happening with these failed requests.
+
+- Metricbeat monitors servers and collects metrics such as CPU usage, disk space, memory, etc.. If you happen to see unusual CPU usage on one of your servers, you'll be able to see a visual representation of that metric sent from Metricbeat to an application like Kibana.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -103,6 +105,7 @@ _TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
 - _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
 - Which URL do you navigate to in order to check that the ELK server is running?
-	- http://13.91.23.76:5601/app/kibana
+	- http://YOUR ELK SERVER:5601/app/kibana
+	- for example mine is at http://13.91.23.76:5601/app/kibana
 
 _As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc._
