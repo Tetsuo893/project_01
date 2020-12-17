@@ -1,5 +1,5 @@
 #!/bin/bash
-# loop through list of IP address reanges from RockStar Corp with fping.
+# loop through list of IP address ranges from RockStar Corp with fping.
 
 iplist=(15.199.95.91/28
 15.199.94.91/28
