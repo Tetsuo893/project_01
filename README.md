@@ -119,7 +119,7 @@ The example below is a snippet of the ansible hosts file where I setup the info 
 
 Answer the following questions to fill in the blanks:
 - Which file is the playbook? Where do you copy it?
-	- [install_elk](Ansible/install_elk.yml) and copy it to /etc/ansible/roles.
+	- [install_elk.yml](Ansible/install_elk.yml) and copy it to /etc/ansible/roles.
 - Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
 	- The Ansible hosts file to run the playbook on a specific machine. You need to specify the VM groups like webservers or elk server in the Ansible hosts file.
 - Which URL do you navigate to in order to check that the ELK server is running?
@@ -129,7 +129,7 @@ Answer the following questions to fill in the blanks:
 
 Navigate to /etc/ansible on your ansible VM and edit the ansible hosts file to add your groups.
 - run `nano hosts` and edit your groups with their IP addresses. Should look similar to the below example:
-```bash
+```yaml
 [webservers]
 ## alpha.example.org
 ## beta.example.org
@@ -142,7 +142,7 @@ Navigate to /etc/ansible on your ansible VM and edit the ansible hosts file to a
 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
 ```
 To download the files from github, navigate to /etc/ansible/ on your ansible VM and run command:
-``` bash
+```bash
 # download elk playbook
 curl https://raw.githubusercontent.com/Tetsuo893/project_01/main/Ansible/metricbeat_playbook.yml > roles/install-elk.yml
 
@@ -151,6 +151,7 @@ ansible-playbook roles/install-elk.yml
 ```
 If no errors occured, you should be able to see that your elk install was successful.
 - In a browser, navigate to http://[your.ELK-VM.External.IP]:5601/app/kibana and see if Kibana application loads up.
+![kibana dash](images/Kibana_dash.png)
 
 
 
