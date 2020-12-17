@@ -89,7 +89,7 @@ We have installed the following Beats on the above machines:
 	- metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- Filebeat allows us to collect system logs so we can see what's happening on the operating system and the services installed on that server. If for example, there are many failed SSH attempts, Filebeat will capture these logs and send them to an application like Kibana so we can view what's happening with these failed requests.
+- Filebeat allows us to collect system logs so we can see what's happening on the operating system and the services installed on that server. If for example, there are many failed SSH attempts, Filebeat will capture these logs and send them to Kibana to visualize the data.
 
 - Metricbeat monitors servers and collects metrics such as CPU usage, disk space, memory, etc.. If you happen to see unusual CPU usage on one of your servers, you'll be able to see a visual representation of that metric sent from Metricbeat to an application like Kibana.
 
@@ -97,7 +97,7 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
+- Copy the  file to _____.
 - Update the _____ file to include...
 - Run the playbook, and navigate to ____ to check that the installation worked as expected.
 
@@ -105,7 +105,6 @@ _TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
 - _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
 - Which URL do you navigate to in order to check that the ELK server is running?
-	- http://YOUR ELK SERVER:5601/app/kibana
-	- for example mine is at http://13.91.23.76:5601/app/kibana
+	- http://[your.elk.IP]/app/kibana
 
 _As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc._
