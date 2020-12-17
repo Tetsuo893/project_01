@@ -46,7 +46,7 @@ The configuration details of each machine may be found below.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the Jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP address:
-- personal home PC IP address
+- 192.168.1.139
 
 
 Machines within the network can only be accessed by The Jump Box 10.0.0.4.
@@ -55,7 +55,7 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box |                  No | Personal home IP   |
+| Jump Box |                  No | 192.168.1.139   |
 | Web-1    | No                  | 10.0.0.5                     |
 | Web-2      |       No       |    10.0.0.6                  |
 | Elk Server | No                | 10.1.0.4   			 |
