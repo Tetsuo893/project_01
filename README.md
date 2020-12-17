@@ -46,7 +46,7 @@ The configuration details of each machine may be found below.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the Jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP address:
-- 173.0.77.86 from home PC
+- personal home PC IP address
 
 
 Machines within the network can only be accessed by The Jump Box 10.0.0.4.
@@ -55,10 +55,10 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box |                  No | 10.0.0.5, 10.0.0.6, 10.1.0.4   |
-| Web-1 |    No                 |  10.0.0.4, 10.1.0.4                    |
-| Web-2         |       No       | 10.0.0.4, 10.1.0.4                     |
-| Elk Server | No | 10.0.0.4, 10.0.0.5, 10.0.0.6|
+| Jump Box |                  No | Personal home IP   |
+| Web-1    | No                  | 10.0.0.5                     |
+| Web-2      |       No       |    10.0.0.6                  |
+| Elk Server | No                | 10.1.0.4   			 |
 
 
 
@@ -97,14 +97,67 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the  file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the [install_elk](Ansible/install_elk.yml)  file to /etc/ansible/roles.
+- Update the ansible hosts file in /etc/ansible to include
+	- name of your server group or groups where you want the playbooks to run.
+	- IP addresses of those VMs
+The example below is a snippet of the ansible hosts file where I setup the info for my VMs so the playbooks will run on the VMs specified.
+```yaml
+[webservers]
+## alpha.example.org
+## beta.example.org
+## 192.168.1.100
+## 192.168.1.110
+10.0.0.5 ansible_python_interpreter=/usr/bin/python3
+10.0.0.6 ansible_python_interpreter=/usr/bin/python3
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+[elk]
+10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+```
+
+- Run the playbook, and navigate to one of your VMs to check that the installation worked as expected.
+
+Answer the following questions to fill in the blanks:
+- Which file is the playbook? Where do you copy it?
+	- [install_elk](Ansible/install_elk.yml) and copy it to /etc/ansible/roles.
+- Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+	- The Ansible hosts file to run the playbook on a specific machine. You need to specify the VM groups like webservers or elk server in the Ansible hosts file.
 - Which URL do you navigate to in order to check that the ELK server is running?
-	- http://[your.elk.IP]/app/kibana
+	- http://[your.elk.IP]:5601/app/kibana
 
-_As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+### As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc.
+
+Navigate to /etc/ansible on your ansible VM and edit the ansible hosts file to add your groups.
+- run `nano hosts` and edit your groups with their IP addresses. Should look similar to the below example:
+```bash
+[webservers]
+## alpha.example.org
+## beta.example.org
+## 192.168.1.100
+## 192.168.1.110
+10.0.0.5 ansible_python_interpreter=/usr/bin/python3
+10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+
+[elk]
+10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+```
+To download the files from github, navigate to /etc/ansible/ on your ansible VM and run command:
+``` bash
+# download elk playbook
+curl https://raw.githubusercontent.com/Tetsuo893/project_01/main/Ansible/metricbeat_playbook.yml > roles/install-elk.yml
+
+# run the playbook
+ansible-playbook roles/install-elk.yml
+```
+If no errors occured, you should be able to see that your elk install was successful.
+- In a browser, navigate to http://[your.ELK-VM.External.IP]:5601/app/kibana and see if Kibana application loads up.
+
+
+
+
+
+
+
+
+
+
